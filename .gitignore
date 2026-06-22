@@ -1,0 +1,33 @@
+# Runtime database
+subscriptions.db
+
+# Application logs (generated at runtime)
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor configuration (opencode)
+opencode.json
+.opencode/
