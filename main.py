@@ -163,11 +163,11 @@ def parse_vless_url(url: str) -> Dict[str, str]:
     subscription_status = ""
     if "✅" in fragment_decoded:
         subscription_status = "1"
-        subscription_status_text = "Active"
-        subscription_status_emoji = "✅"
+        subscription_status_text = ""
+        subscription_status_emoji = ""
     elif "❌" in fragment_decoded:
         subscription_status = "0"
-        subscription_status_text = "Expired"
+        subscription_status_text = " (Деактивирован)"
         subscription_status_emoji = "❌"
 
     result = {
