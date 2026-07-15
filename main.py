@@ -6,7 +6,7 @@ import os
 import sqlite3
 import time
 import threading
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, unquote
 from logging.handlers import RotatingFileHandler
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, Response, HTTPException
@@ -156,11 +156,28 @@ def parse_vless_url(url: str) -> Dict[str, str]:
         parsed_qs = parse_qs(params_part)
         query = {k: v[0] for k, v in parsed_qs.items()}
 
+    # Декодируем и парсим статус подписки из fragment
+    fragment_decoded = unquote(fragment) if fragment else ""
+    subscription_status_emoji = ""
+    subscription_status_text = ""
+    subscription_status = ""
+    if "✅" in fragment_decoded:
+        subscription_status = "1"
+        subscription_status_text = "Active"
+        subscription_status_emoji = "✅"
+    elif "❌" in fragment_decoded:
+        subscription_status = "0"
+        subscription_status_text = "Expired"
+        subscription_status_emoji = "❌"
+
     result = {
         "XRAY_ID": uuid,
         "SERVER_IP": host,
         "SERVER_PORT": port,
-        "FRAGMENT": fragment,
+        "FRAGMENT": fragment_decoded,
+        "SUBSCRIPTION_STATUS": subscription_status,
+        "SUBSCRIPTION_STATUS_TEXT": subscription_status_text,
+        "SUBSCRIPTION_STATUS_EMOJI": subscription_status_emoji,
         **query   # все параметры из query переходят в результат
     }
 
@@ -265,8 +282,12 @@ async def proxy(request: Request, path: str):
         }, indent=2, ensure_ascii=False))
         logging.info(f"📤 {resp.status_code} (оригинал)")
 
-        # Модификация только для GET /sub/*
-        if request.method == "GET" and re.match(r'^/sub/', full_path):
+        # Пропускаем HTML-ответы (панель администрирования)
+        content_type = resp.headers.get("content-type", "")
+        is_html_response = "text/html" in content_type
+
+        # Модификация только для GET /sub/* (кроме HTML)
+        if request.method == "GET" and re.match(r'^/sub/', full_path) and not is_html_response:
             logging.info(f"🔧 Обработка подписки для {full_path}")
 
             # 1. Извлекаем VLESS-ссылку из тела ответа
