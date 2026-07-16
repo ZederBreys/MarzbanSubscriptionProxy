@@ -31,3 +31,4 @@ Thumbs.db
 # Editor configuration (opencode)
 opencode.json
 .opencode/
+*.refact

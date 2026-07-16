@@ -323,7 +323,21 @@ async def proxy(request: Request, path: str):
             if profile_web_page_url:
                 match = re.search(r'/sub/([^/?#]+)', profile_web_page_url)
                 if match:
-                    sub_id = match.group(1)
+                    encoded_sub_id = match.group(1)
+                    try:
+                        # Декодируем base64 (URL-safe)
+                        padding = 4 - len(encoded_sub_id) % 4
+                        if padding != 4:
+                            encoded_sub_id += '=' * padding
+                        
+                        decoded_bytes = base64.urlsafe_b64decode(encoded_sub_id)
+                        # Берём только текст до запятой (MyPC)
+                        decoded_text = decoded_bytes.decode('ascii', errors='ignore')
+                        sub_id = decoded_text.split(',')[0] if ',' in decoded_text else decoded_text
+                        
+                    except Exception as e:
+                        logging.warning(f"Не удалось декодировать sub_id: {encoded_sub_id}. Ошибка: {e}")
+                    
                     logging.debug(f"🆔 Найден sub_id: {sub_id}")
 
             # 3. МГНОВЕННЫЙ поиск в кэше памяти (без обращения к БД!)
