@@ -1,0 +1,70 @@
+:root {
+    /* Background */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --bg-overlay: #1c2128;
+
+    /* Text */
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --text-tertiary: #6e7681;
+    --text-link: #58a6ff;
+
+    /* Accent */
+    --accent-color: #58a6ff;
+    --accent-color-hover: #79c0ff;
+    --accent-color-muted: rgba(88, 166, 255, 0.1);
+
+    /* Semantic */
+    --danger-color: #f85149;
+    --danger-color-hover: #ff6b63;
+    --danger-color-muted: rgba(248, 81, 73, 0.1);
+    --success-color: #3fb950;
+    --success-color-muted: rgba(63, 185, 80, 0.1);
+    --warning-color: #d29922;
+    --warning-color-muted: rgba(210, 153, 34, 0.1);
+
+    /* Borders */
+    --border-color: #30363d;
+    --border-color-muted: #21262d;
+
+    /* Layout */
+    --sidebar-width: 220px;
+    --content-max-width: 1200px;
+    --header-height: 0px;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
+        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas',
+        'Courier New', monospace;
+    --font-size-xs: 12px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-md: 15px;
+    --font-size-lg: 17px;
+    --font-size-xl: 22px;
+    --font-size-xxl: 26px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+    /* Transitions */
+    --transition-fast: 100ms ease;
+    --transition-normal: 200ms ease;
+}

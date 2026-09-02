@@ -1,0 +1,65 @@
+.sidebar-header {
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    user-select: none;
+}
+
+.sidebar-section {
+    padding: var(--spacing-xs) 0;
+}
+
+.sidebar-link {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    user-select: none;
+    border-left: 2px solid transparent;
+}
+
+.sidebar-link:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+.sidebar-link.active {
+    color: var(--text-primary);
+    background: var(--accent-color-muted);
+    border-left-color: var(--accent-color);
+}
+
+.sidebar-link.danger {
+    color: var(--danger-color);
+}
+
+.sidebar-link.danger:hover {
+    color: var(--danger-color-hover);
+    background: var(--danger-color-muted);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar-footer .user-info {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.sidebar-footer .user-login {
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    font-weight: 600;
+}

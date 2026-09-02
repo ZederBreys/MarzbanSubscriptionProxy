@@ -5,8 +5,7 @@
   "dns": {
     "servers": [
       "1.1.1.1",
-      "8.8.8.8",
-      "localhost"
+      "8.8.8.8"
     ],
     "queryStrategy": "UseIPv4"
   },
@@ -22,8 +21,12 @@
       },
       "sniffing": {
         "enabled": true,
-        "routeOnly": true,
-        "destOverride": ["http", "tls", "quic"]
+        "routeOnly": false,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
       }
     },
     {
@@ -36,8 +39,12 @@
       },
       "sniffing": {
         "enabled": true,
-        "routeOnly": true,
-        "destOverride": ["http", "tls", "quic"]
+        "routeOnly": false,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
       }
     }
   ],
@@ -84,14 +91,16 @@
       "protocol": "blackhole"
     }
   ],
-  "remarks": "🇳🇱 Всё кроме RU сайтов",
+  "remarks": "{{SUBSCRIPTION_STATUS_EMOJI}}🇳🇱 Всё кроме RU сайтов{{SUBSCRIPTION_STATUS_TEXT}}",
   "routing": {
     "domainMatcher": "hybrid",
     "domainStrategy": "IPIfNonMatch",
     "rules": [
       {
         "outboundTag": "block",
-        "protocol": ["bittorrent"],
+        "protocol": [
+          "bittorrent"
+        ],
         "type": "field"
       },
       {
@@ -265,6 +274,24 @@
           "domain:yccdn.ru",
           "domain:yektanet.com",
           "domain:youla-web-static.mrgcdn.ru",
+          "domain:appsflyersdk.com",
+          "domain:castarsdk.com",
+          "domain:earnapp.com",
+          "domain:earnsdk.io",
+          "domain:hexsdk.com",
+          "domain:honeygain.com",
+          "domain:instajob.ai",
+          "domain:ipidea.io",
+          "domain:ipidea.net",
+          "domain:packetsdk.com",
+          "domain:packetsdk.io",
+          "domain:packetsdk.net",
+          "domain:packetsdk.xyz",
+          "domain:packetstream.net",
+          "domain:pawns.app",
+          "domain:peer2profit.com",
+          "domain:tiktokpangle.us",
+          "domain:uxzw.club",
           "regexp:(^|\\.)2gis\\.(ae|am|az|by|com|com.cy|cz|ge|kg|kz|ru|tj|ua|uz)$",
           "regexp:(^|\\.)alfa[a-z0-9-]*\\.(oavdo.amc|ru|st)$",
           "regexp:(^|\\.)atomyze\\.(ru|tech)$",
@@ -318,7 +345,18 @@
           "regexp:(^|\\.)yast[a-z0-9-]*\\.(net|ru)$",
           "regexp:(^|\\.)zvuk[a-z0-9-]*\\.(com)$",
           "regexp:wb\\.(com|ru)$",
-          "regexp:youla\\.(io|ru)$"
+          "regexp:youla\\.(io|ru)$",
+          "regexp:(^|\\\\.)(mobile|www)\\\\.auchan\\\\.ru$",
+          "domain:functions.yandexcloud.net",
+          "domain:app.uaas.yandex.ru",
+          "domain:api.m-scan.ru",
+          "domain:ru.vtb24.mobilebanking.android",
+          "domain:grpc.prod.digital.uni.rest",
+          "domain:api.vk.ru",
+          "domain:api.mindbox.ru",
+          "domain:cdn-settings.appsflyersdk.com",
+          "domain:firebaseremoteconfig.googleapis.com",
+          "regexp:(^|\\\\.)(orderapp|notifier|orderapp-app-static)\\\\.burgerkingrus\\\\.ru$"
         ],
         "outboundTag": "direct",
         "type": "field"

@@ -1,13 +1,20 @@
 # Runtime database
 subscriptions.db
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+*.db-journal
+.env
 
 # Application logs (generated at runtime)
 *.log
 
 # Python cache
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
 
 # Virtual environment
 .venv/
@@ -16,6 +23,21 @@ env/
 
 # Environment files
 .env
+.env.local
+.env.*.local
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Distribution / build
+dist/
+build/
+*.egg-info/
 
 # IDE and editor files
 .vscode/
@@ -32,3 +54,7 @@ Thumbs.db
 opencode.json
 .opencode/
 *.refact
+
+# Project-internal files (not for publication)
+AGENTS.md
+test_*.py

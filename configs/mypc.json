@@ -5,8 +5,7 @@
   "dns": {
     "servers": [
       "1.1.1.1",
-      "8.8.8.8",
-      "localhost"
+      "8.8.8.8"
     ],
     "queryStrategy": "UseIPv4"
   },
@@ -22,8 +21,12 @@
       },
       "sniffing": {
         "enabled": true,
-        "routeOnly": true,
-        "destOverride": ["http", "tls", "quic"]
+        "routeOnly": false,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
       }
     },
     {
@@ -36,8 +39,12 @@
       },
       "sniffing": {
         "enabled": true,
-        "routeOnly": true,
-        "destOverride": ["http", "tls", "quic"]
+        "routeOnly": false,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
       }
     }
   ],
@@ -84,14 +91,31 @@
       "protocol": "blackhole"
     }
   ],
-  "remarks": "🇳🇱 Всё кроме RU сайтов (Мой ПК)",
+  "remarks": "{{SUBSCRIPTION_STATUS_EMOJI}}🇳🇱 Всё кроме RU сайтов (Мой ПК){{SUBSCRIPTION_STATUS_TEXT}}",
   "routing": {
     "domainMatcher": "hybrid",
     "domainStrategy": "IPIfNonMatch",
     "rules": [
       {
+        "type": "field",
+        "ip": [
+          "201:92e3:d9df:4932:ca24:586a:4475:6e8b/128"
+        ],
+        "outboundTag": "proxy"
+      },
+      {
+        "type": "field",
         "outboundTag": "block",
-        "protocol": ["bittorrent"],
+        "domain": [
+          "regexp:^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)*adobe(?:login|-identity|genuine)?\\.com$",
+          "regexp:^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)*adobe(?:io|cc|ccstatic)?\\.(?:com|io)$"
+        ]
+      },
+      {
+        "outboundTag": "block",
+        "protocol": [
+          "bittorrent"
+        ],
         "type": "field"
       },
       {
@@ -265,6 +289,33 @@
           "domain:yccdn.ru",
           "domain:yektanet.com",
           "domain:youla-web-static.mrgcdn.ru",
+          "domain:appsflyersdk.com",
+          "domain:castarsdk.com",
+          "domain:earnapp.com",
+          "domain:earnsdk.io",
+          "domain:hexsdk.com",
+          "domain:honeygain.com",
+          "domain:instajob.ai",
+          "domain:ipidea.io",
+          "domain:ipidea.net",
+          "domain:packetsdk.com",
+          "domain:packetsdk.io",
+          "domain:packetsdk.net",
+          "domain:packetsdk.xyz",
+          "domain:packetstream.net",
+          "domain:pawns.app",
+          "domain:peer2profit.com",
+          "domain:tiktokpangle.us",
+          "domain:uxzw.club",
+          "domain:discord.com",
+          "domain:gateway.discord.gg",
+          "domain:cdn.discordapp.com",
+          "domain:updates.discord.com",
+          "domain:youtube.com",
+          "domain:youtu.be",
+          "domain:i.ytimg.com",
+          "domain:redirector.googlevideo.com",
+          "regexp:(^|\\.)lolka[a-z0-9-]*\\.(com|io|net|ru|app|tech|online|site|xyz)$",
           "regexp:(^|\\.)2gis\\.(ae|am|az|by|com|com.cy|cz|ge|kg|kz|ru|tj|ua|uz)$",
           "regexp:(^|\\.)alfa[a-z0-9-]*\\.(oavdo.amc|ru|st)$",
           "regexp:(^|\\.)atomyze\\.(ru|tech)$",
@@ -318,7 +369,18 @@
           "regexp:(^|\\.)yast[a-z0-9-]*\\.(net|ru)$",
           "regexp:(^|\\.)zvuk[a-z0-9-]*\\.(com)$",
           "regexp:wb\\.(com|ru)$",
-          "regexp:youla\\.(io|ru)$"
+          "regexp:youla\\.(io|ru)$",
+          "regexp:(^|\\\\.)(mobile|www)\\\\.auchan\\\\.ru$",
+          "domain:functions.yandexcloud.net",
+          "domain:app.uaas.yandex.ru",
+          "domain:api.m-scan.ru",
+          "domain:ru.vtb24.mobilebanking.android",
+          "domain:grpc.prod.digital.uni.rest",
+          "domain:api.vk.ru",
+          "domain:api.mindbox.ru",
+          "domain:cdn-settings.appsflyersdk.com",
+          "domain:firebaseremoteconfig.googleapis.com",
+          "regexp:(^|\\\\.)(orderapp|notifier|orderapp-app-static)\\\\.burgerkingrus\\\\.ru$"
         ],
         "outboundTag": "direct",
         "type": "field"
